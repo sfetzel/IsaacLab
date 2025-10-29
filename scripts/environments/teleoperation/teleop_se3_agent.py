@@ -5,6 +5,7 @@
 
 """Script to run a keyboard teleoperation with Isaac Lab manipulation environments."""
 
+
 """Launch Isaac Sim Simulator first."""
 
 import argparse
@@ -60,7 +61,7 @@ from isaaclab.devices import Se3Gamepad, Se3GamepadCfg, Se3Keyboard, Se3Keyboard
 from isaaclab.devices.openxr import remove_camera_configs
 from isaaclab.devices.teleop_device_factory import create_teleop_device
 from isaaclab.managers import TerminationTermCfg as DoneTerm
-
+from isaaclab.devices.camera import Se3HandPose, Se3HandPoseCfg
 import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.manager_based.manipulation.lift import mdp
 from isaaclab_tasks.utils import parse_env_cfg
@@ -192,6 +193,10 @@ def main() -> None:
             elif args_cli.teleop_device.lower() == "gamepad":
                 teleop_interface = Se3Gamepad(
                     Se3GamepadCfg(pos_sensitivity=0.1 * sensitivity, rot_sensitivity=0.1 * sensitivity)
+                )
+            elif args_cli.teleop_device.lower() == "handpose":
+                teleop_interface = Se3HandPose(
+                    Se3KeyboardCfg(pos_sensitivity=0.5 * sensitivity, rot_sensitivity=0.1 * sensitivity)
                 )
             else:
                 omni.log.error(f"Unsupported teleop device: {args_cli.teleop_device}")
