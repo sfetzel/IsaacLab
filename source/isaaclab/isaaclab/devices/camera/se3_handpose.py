@@ -21,7 +21,8 @@ import omni
 from ..device_base import DeviceBase, DeviceCfg
 
 #from lacny_teleop import HandPoseEstimator
-from lacny_teleop import CircleEstimator, GripperState, HandPoseEstimator
+from jed_teleop import CircleEstimator, GripperState, MediaPipePoseEstimator
+from jed_teleop.sources import OpenCvDepthEstSource
 
 @dataclass
 class Se3HandPoseCfg(DeviceCfg):
@@ -61,7 +62,7 @@ class Se3HandPose(DeviceBase):
         self.decay = 0.95
         # dictionary for additional callbacks
         self._additional_callbacks = dict()
-        self._estimator = HandPoseEstimator(0)
+        self._estimator = MediaPipePoseEstimator(OpenCvDepthEstSource(0))
         self._estimator.is_paused = True
         self._estimator.start()
 
