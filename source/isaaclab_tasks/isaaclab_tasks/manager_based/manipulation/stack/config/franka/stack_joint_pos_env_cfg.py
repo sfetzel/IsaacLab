@@ -50,8 +50,8 @@ class EventCfg:
         func=franka_stack_events.randomize_object_pose,
         mode="reset",
         params={
-            "pose_range": {"x": (0.4, 0.6), "y": (-0.10, 0.10), "z": (0.0203, 0.0203), "yaw": (-1.0, 1, 0)},
-            "min_separation": 0.1,
+            "pose_range": {"x": (0.4, 0.6), "y": (-0.15, 0.15), "z": (0.0203, 0.0203), "yaw": (-1.0, 1, 0)},
+            "min_separation": 0.12,
             "asset_cfgs": [SceneEntityCfg("cube_1"), SceneEntityCfg("cube_2"), SceneEntityCfg("cube_3")],
         },
     )

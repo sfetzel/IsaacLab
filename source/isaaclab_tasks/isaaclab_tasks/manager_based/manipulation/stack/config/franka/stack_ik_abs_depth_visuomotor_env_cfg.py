@@ -126,6 +126,9 @@ class ObservationsCfg:
         table_seg_cam = ObsTerm(
             func=mdp.image, params={"sensor_cfg": SceneEntityCfg("table_cam"), "data_type": "semantic_segmentation", "normalize": False}
         )
+        table_rgb_cam = ObsTerm(
+            func=mdp.image, params={"sensor_cfg": SceneEntityCfg("table_cam"), "data_type": "rgb", "normalize": False}
+        )
 
         def __post_init__(self):
             self.enable_corruption = False
